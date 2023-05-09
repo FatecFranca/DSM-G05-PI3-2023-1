@@ -21,7 +21,7 @@ export class Cliente {
     @Prop({required: false, type: enderecoSchema})
     endereco: {enderecoSchema}
 
-    @Prop({required: true})
+    @Prop({required: true, default: 2})
     role: number
 
     @Prop({required: true, default: new Date()})

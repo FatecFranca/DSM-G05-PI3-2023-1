@@ -16,6 +16,13 @@ export class ClienteService {
         return await this.clienteModel.findById(id)
     }
 
+    async getByQuery(search: string) {
+        return await this.clienteModel.find().or([
+            {nome: search},
+            {email: search},
+        ])
+    }
+
     async create(data: CreateClienteDTO) {
         try {
             const createdNew = new this.clienteModel(data);
@@ -42,8 +49,8 @@ export class ClienteService {
     }
 
     async delete(id: string) {
-        return await this.clienteModel.deleteOne({$where: id})
-    } 
+        return await this.clienteModel.deleteOne({ _id: id })
+    }
 
     async exists(id: string) {
         if (!(await this.clienteModel.count({ _id: id }))) {
