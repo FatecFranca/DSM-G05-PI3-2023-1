@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsOptional, MinLength, MaxLength } from "class-validator";
+import { IsString, IsNumber, IsOptional, MinLength, MaxLength, IsEmail } from "class-validator";
 import { Document } from "mongoose";
 
 export class CreateClienteDTO extends Document {
@@ -11,7 +11,7 @@ export class CreateClienteDTO extends Document {
     @IsString()
     cpf: string
 
-    @IsString()
+    @IsEmail()
     email: string
 
     @IsNumber()

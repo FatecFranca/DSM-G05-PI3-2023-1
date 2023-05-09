@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
 import { ClienteService } from "./cliente.service";
 import { CreateClienteDTO } from "./dtos/create-cliente.dto";
 import { UpdateClienteDTO } from "./dtos/update-cliente.dto";
@@ -6,6 +6,10 @@ import { UpdateClienteDTO } from "./dtos/update-cliente.dto";
 @Controller('cliente')
 export class ClienteController {
     constructor(private readonly clienteService: ClienteService) {}
+    @Get('/teste')
+    async getQuery (@Query('search') search?: string) {
+        return await this.clienteService.getByQuery(search);
+    }
 
     @Get()
     async getAll() {
@@ -16,6 +20,7 @@ export class ClienteController {
     async getById (@Param('id') id: string) {
         return await this.clienteService.getById(id);
     }
+
 
     @Post()
     async create (@Body() data: CreateClienteDTO) {
