@@ -10,10 +10,10 @@ export class Imovel {
     area: string
 
     @Prop({required: true})
-    qtde_quartos: string
+    qtde_quartos: number
 
     @Prop({required: true, unique: true})
-    qtde_banheiros: string
+    qtde_banheiros: number
 
     @Prop({required: true})
     valor: string
