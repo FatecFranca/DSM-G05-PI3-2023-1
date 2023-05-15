@@ -5,6 +5,7 @@ import { ClienteModule } from './cliente/cliente.module';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
 import { CorretorModule } from './corretor/corretor.module';
+import { ImovelModule } from './imovel/imovel.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { CorretorModule } from './corretor/corretor.module';
     ClienteModule,
     AuthModule,
     JwtModule,
+    ImovelModule,
   ]
 })
 export class AppModule {}
