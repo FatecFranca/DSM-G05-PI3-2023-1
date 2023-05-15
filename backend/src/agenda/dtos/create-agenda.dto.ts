@@ -12,11 +12,11 @@ export class CreateAgendaDTO extends Document {
     horario: string
 
     @IsString()
-    cliente_id: Schema.Types.ObjectId | any
+    cliente: Schema.Types.ObjectId | any
 
     @IsString()
-    imovel_id: Schema.Types.ObjectId | any
+    imovel: Schema.Types.ObjectId | any
 
     @IsString()
-    corretor_id: Schema.Types.ObjectId | any
+    corretor: Schema.Types.ObjectId | any
 }
