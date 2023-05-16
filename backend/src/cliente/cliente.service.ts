@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { CreateClienteDTO } from "./dtos/create-cliente.dto";
 import { UpdateClienteDTO } from "./dtos/update-cliente.dto";
+import { QueryParamsDTO } from "./dtos/search-query.dto";
 
 @Injectable()
 export class ClienteService {
@@ -16,11 +17,12 @@ export class ClienteService {
         return await this.clienteModel.findById(id)
     }
 
-    async getByQuery(search: string) {
-        return await this.clienteModel.find().or([
-            {nome: search},
-            {email: search},
-        ])
+    async getByQuery( search?: QueryParamsDTO) {
+        return await this.clienteModel.find({$or: [
+            {cpf: search.cpf}, 
+            {nome: search.nome},
+            {email: search.email}
+        ]})
     }
 
     async create(data: CreateClienteDTO) {

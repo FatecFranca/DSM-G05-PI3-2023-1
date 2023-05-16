@@ -3,14 +3,17 @@ import { ClienteService } from "./cliente.service";
 import { CreateClienteDTO } from "./dtos/create-cliente.dto";
 import { UpdateClienteDTO } from "./dtos/update-cliente.dto";
 import { ReturnClienteDTO } from "./dtos/return-cliente.dto";
+import { QueryParamsDTO } from "./dtos/search-query.dto";
 
 @Controller('cliente')
 export class ClienteController {
     constructor(private readonly clienteService: ClienteService) {}
     @Get('/search')
-    async getQuery (@Query('search') search?: string): Promise<ReturnClienteDTO[]> {
+    async getQuery (
+        @Query() query: QueryParamsDTO
+    ): Promise<ReturnClienteDTO[]> {
         return (
-           await this.clienteService.getByQuery(search)
+           await this.clienteService.getByQuery(query)
         ).map((cliente) => new ReturnClienteDTO(cliente))
     }
 
