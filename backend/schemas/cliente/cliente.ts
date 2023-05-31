@@ -5,7 +5,6 @@ export class Cliente extends Document {
     email: string;
     telefone: string;
     cpf: string;
-    role: number;
     senha: string;
     endereco: string[];
 }

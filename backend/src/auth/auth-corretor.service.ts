@@ -2,29 +2,29 @@ import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateClienteDTO } from '../cliente/dtos/create-cliente.dto';
-import { Cliente } from '../../schemas/cliente/cliente';
+import { CreateCorretorDTO } from '../corretor/dtos/create-corretor.dto';
+import { Corretor } from '../../schemas/corretor/corretor';
 
 @Injectable()
-export class AuthClienteService {
+export class AuthCorretorService {
     private issuer = 'login';
     private audience = 'users';
     constructor(
         private readonly JWTService: JwtService,
-        @InjectModel('CreateClienteDTO') private readonly Cliente: Model<CreateClienteDTO>
+        @InjectModel('CreateCorretorDTO') private readonly corretor: Model<CreateCorretorDTO>
     ) { }
 
-    createToken(cliente: Cliente) {
+    createToken(corretor: Corretor) {
         return {
             accessToken: this.JWTService.sign(
                 {
-                    id: cliente._id,
-                    nome: cliente.nome,
-                    email: cliente.email,
+                    id: corretor._id,
+                    nome: corretor.nome,
+                    email: corretor.email,
                 },
                 {
                     expiresIn: '7 days',
-                    subject: String(cliente._id),
+                    subject: String(corretor._id),
                     issuer: this.issuer,
                     audience: this.audience,
                 }
@@ -54,12 +54,12 @@ export class AuthClienteService {
     }
 
     async login(email: string, senha: string) {
-        const cliente = await this.Cliente.findOne({ senha: senha, email: email}).exec();
-        if (!cliente) throw new UnauthorizedException('Usuário não encontrado.');
+        const corretor = await this.corretor.findOne({ senha: senha, email: email}).exec();
+        if (!corretor) throw new UnauthorizedException('Usuário não encontrado.');
 
         return {
-            token: this.createToken(cliente),
-            cliente,
+            token: this.createToken(corretor),
+            cliente: corretor,
         };
     }
 }
