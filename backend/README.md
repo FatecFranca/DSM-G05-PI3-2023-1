@@ -1,6 +1,6 @@
-![Logo]()
+<img src="" width="100%" height="250px" title="logo">
 
-
+<br><br>
 # 🔧🪛 See My Place (API RESTful) 🏠
 
 Repositório destinado aos códigos do backend da aplicação.
@@ -14,7 +14,7 @@ Para rodar este projeto, é necessario adicionar as seguintes variáveis de ambi
 `PORT="xxxx"`
 <br><br>
 
-## 🛡️ Variáveis de segrurança
+## 🛡️ Variáveis de segurança
 No arquivo .env é necessário acrescentar variáveis de segurança para o JWT.
 
 `JWT_SECRETE="32 caracteres aleatorios"`
