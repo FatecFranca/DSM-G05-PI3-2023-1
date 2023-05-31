@@ -6,6 +6,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ClienteSchema } from '../../schemas/cliente/cliente.schema';
 import { AuthController } from './auth.controller';
 import { AuthClienteService } from './auth-cliente.service';
+import { CorretorSchema } from '../../schemas/corretor/corretor.schema';
+import { AuthCorretorService } from './auth-corretor.service';
 
 @Module({
     imports: [
@@ -15,9 +17,10 @@ import { AuthClienteService } from './auth-cliente.service';
         }),
         forwardRef(() => ClienteModule),
         MongooseModule.forFeature([{name: 'CreateClienteDTO', schema: ClienteSchema}]),
+        MongooseModule.forFeature([{name: 'CreateCorretorDTO', schema: CorretorSchema}]),
     ],
     controllers: [AuthController],
-    exports: [AuthClienteService],
-    providers: [AuthClienteService]
+    exports: [AuthClienteService, AuthCorretorService],
+    providers: [AuthClienteService, AuthCorretorService]
 })
 export class AuthModule {}
