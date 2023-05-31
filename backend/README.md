@@ -1,9 +1,6 @@
-<img src="" width="100%" height="250px" title="logo">
+<img src="../Documentos/img/BannerPI3s.png" width="100%" height="300px" title="logo">
 
 <br><br>
-![Logo]()
-
-
 # 🔧🪛 See My Place (API RESTful) 🏠
 
 Repositório destinado aos códigos do backend da aplicação.
