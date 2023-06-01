@@ -4,6 +4,7 @@ import { CreateClienteDTO } from "./dtos/create-cliente.dto";
 import { UpdateClienteDTO } from "./dtos/update-cliente.dto";
 import { ReturnClienteDTO } from "./dtos/return-cliente.dto";
 import { QueryParamsDTO } from "./dtos/search-query.dto";
+import { ParamId } from "../decorators/param-id.decorator";
 
 @Controller('cliente')
 export class ClienteController {
@@ -25,7 +26,7 @@ export class ClienteController {
     }
 
     @Get(':id')
-    async getById (@Param('id') id: string): Promise<ReturnClienteDTO> {
+    async getById (@ParamId() id: string): Promise<ReturnClienteDTO> {
         return new ReturnClienteDTO(
             await this.clienteService.getById(id)
         );
@@ -38,7 +39,7 @@ export class ClienteController {
     }
 
     @Put(':id')
-    async update(@Param('id') id: string, @Body() data: UpdateClienteDTO): Promise<ReturnClienteDTO>  {
+    async update(@ParamId() id: string, @Body() data: UpdateClienteDTO): Promise<ReturnClienteDTO>  {
         return new ReturnClienteDTO(
             await this.clienteService.update(id, data)
         );
@@ -46,7 +47,7 @@ export class ClienteController {
 
 
     @Delete(':id')
-    async delete(@Param('id') id: string) {
+    async delete(@ParamId() id: string) {
         return await this.clienteService.delete(id)
     }
 }
