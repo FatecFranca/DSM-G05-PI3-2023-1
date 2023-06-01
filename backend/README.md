@@ -1,4 +1,4 @@
-<img src="../Documentos/img/BannerPI3s.png" width="100%" height="300px" title="logo">
+<img src="../Documentos/img/BannerPI3s.png" title="logo">
 
 <br><br>
 # 🔧🪛 See My Place (API RESTful) 🏠
