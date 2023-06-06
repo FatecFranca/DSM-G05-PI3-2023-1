@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { ImovelService } from './imovel.service';
 import { CreateImovelDTO } from './dtos/create-imovel.dto';
 import { UpdateImovelDTO } from './dtos/update-imovel.dto';
@@ -7,11 +7,20 @@ import { Roles } from '../decorators/role.decorator';
 import { Role } from '../enums/role.enum';
 import { AuthCorretorGuard } from '../guards/auth-corretor.guard';
 import { RoleGuard } from '../guards/role.guard';
+import { QueryParamsDTO } from './dtos/search-query.dto';
 
 @Controller('imovel')
 export class ImovelController {
     constructor(private readonly imovelService: ImovelService) {}
 
+    @Get('/search')
+    async getQuery(
+        @Query() query: QueryParamsDTO
+    ): Promise<ReturnImovelDTO[]> {
+        return (
+            await this.imovelService.getByQuery(query)
+        ).map((imovel) => new ReturnImovelDTO(imovel))
+    }
     @Get()
     async getAll(): Promise<ReturnImovelDTO[]> {
         return (
