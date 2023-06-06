@@ -6,13 +6,13 @@ export class Imovel {
     @Prop({required: true})
     proprietario: string
 
-    @Prop({required: true, unique: true})
+    @Prop({required: true})
     area: string
 
     @Prop({required: true})
     qtde_quartos: number
 
-    @Prop({required: true, unique: true})
+    @Prop({required: true})
     qtde_banheiros: number
 
     @Prop({required: true})

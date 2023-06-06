@@ -3,10 +3,18 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateImovelDTO } from './dtos/create-imovel.dto';
 import { UpdateImovelDTO } from './dtos/update-imovel.dto';
+import { QueryParamsDTO } from './dtos/search-query.dto';
 
 @Injectable()
 export class ImovelService {
     constructor(@InjectModel('CreateImovelDTO') private readonly imovelModel: Model<CreateImovelDTO>) { }
+
+    async getByQuery( search?: QueryParamsDTO) {
+        return await this.imovelModel.find({$or: [
+            {proprietario: search.proprietario}, 
+            {valor: search.valor},
+        ]})
+    }
 
     async getAll() {
         return await this.imovelModel.find()
