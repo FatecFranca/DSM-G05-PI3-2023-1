@@ -8,6 +8,9 @@ import { AuthController } from './auth.controller';
 import { AuthClienteService } from './auth-cliente.service';
 import { CorretorSchema } from '../../schemas/corretor/corretor.schema';
 import { AuthCorretorService } from './auth-corretor.service';
+import { CorretorModule } from '../corretor/corretor.module';
+import { ImovelModule } from '../imovel/imovel.module';
+import { AgendaModule } from '../agenda/agenda.module';
 
 @Module({
     imports: [
@@ -16,6 +19,9 @@ import { AuthCorretorService } from './auth-corretor.service';
             secret: process.env.JWT_SECRETE
         }),
         forwardRef(() => ClienteModule),
+        forwardRef(() => CorretorModule),
+        forwardRef(() => ImovelModule),
+        forwardRef(() => AgendaModule),
         MongooseModule.forFeature([{name: 'CreateClienteDTO', schema: ClienteSchema}]),
         MongooseModule.forFeature([{name: 'CreateCorretorDTO', schema: CorretorSchema}]),
     ],
