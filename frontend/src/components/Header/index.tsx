@@ -6,6 +6,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Menu from "../Menu";
 import ContextMenu from "@/app/contexts/ContextMenu";
+import Link from "next/link";
 
 const Header = () => {
   const [menu, setMenu] = useContext<any>(ContextMenu);
@@ -17,16 +18,18 @@ const Header = () => {
 
   return (
     <header className="bg-blackMain p-4 flex justify-around items-center">
-      <div>
-        <h1 className="text-3xl ">
-          <span className="text-yellow">S</span>
-          <span className="text-whiteMain">ee</span>
-          <span className="text-yellow">M</span>
-          <span className="text-whiteMain">y</span>
-          <span className="text-yellow">P</span>
-          <span className="text-whiteMain">lace</span>
-        </h1>
-      </div>
+      <Link href="/Home">
+        <div className="cursor-pointer">
+          <h1 className="text-3xl ">
+            <span className="text-yellow">S</span>
+            <span className="text-whiteMain">ee</span>
+            <span className="text-yellow">M</span>
+            <span className="text-whiteMain">y</span>
+            <span className="text-yellow">P</span>
+            <span className="text-whiteMain">lace</span>
+          </h1>
+        </div>
+      </Link>
       <div className="flex flex-row items-center">
         <input
           className="border-2 p-2 w-96 border-solid border-yellow bg-blackMain rounded-3xl placeholder-whiteMain focus:outline-none text-whiteMain"
