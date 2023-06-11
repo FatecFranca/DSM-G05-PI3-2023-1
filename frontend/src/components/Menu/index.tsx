@@ -20,18 +20,22 @@ const Menu = () => {
       <div className="mt-24 ml-16">
         <ul>
           <LinksMenu
+            href=""
             icon={<BsFillPersonFill className="text-3xl text-yellow" />}
             title="Meu perfil"
           />
           <LinksMenu
+            href=""
             icon={<IoMdSettings className="text-3xl text-yellow" />}
             title="Configurações"
           />
           <LinksMenu
+            href="/Users/Register"
             icon={<IoMdAddCircle className="text-3xl text-yellow" />}
             title="Cadastrar Usuário"
           />
           <LinksMenu
+            href=""
             icon={<IoMdAddCircle className="text-3xl text-yellow" />}
             title="Cadastrar Imóvel"
           />
