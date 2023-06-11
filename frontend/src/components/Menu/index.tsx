@@ -35,7 +35,7 @@ const Menu = () => {
             title="Cadastrar Usuário"
           />
           <LinksMenu
-            href=""
+            href="/Realty/Register"
             icon={<IoMdAddCircle className="text-3xl text-yellow" />}
             title="Cadastrar Imóvel"
           />
