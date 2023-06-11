@@ -1,9 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsPersonCircle } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Menu from "../Menu";
+import ContextMenu from "@/app/contexts/ContextMenu";
 
 const Header = () => {
+  const [menu, setMenu] = useContext<any>(ContextMenu);
+
+  const handleMenu = () => {
+    console.log("entrei ak");
+    setMenu(!menu);
+  };
+
   return (
     <header className="bg-blackMain p-4 flex justify-around items-center">
       <div>
@@ -30,10 +41,11 @@ const Header = () => {
         <div className="mr-12">
           <BsPersonCircle className="text-4xl text-whiteMain" />
         </div>
-        <div className="cursor-pointer">
+        <div onClick={handleMenu} className="cursor-pointer">
           <GiHamburgerMenu className="text-4xl text-yellow" />
         </div>
       </div>
+      {menu == true && <Menu />}
     </header>
   );
 };
