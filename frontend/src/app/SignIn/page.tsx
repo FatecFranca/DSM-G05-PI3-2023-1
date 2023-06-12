@@ -1,22 +1,38 @@
 "use client";
 
-import React from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import Input from "@/components/Form/Input";
 import Button from "@/components/Form/Button";
-import {
-  useForm,
-  SubmitHandler,
-  FormProvider,
-  FieldValues,
-} from "react-hook-form";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { AuthContext } from "../contexts/ContextAuth";
+
+type SignInProps = {
+  email: string;
+  senha: string;
+  cliente_radio: string;
+  corretor_radio: string;
+};
 
 const SignIn = () => {
-  const methods = useForm();
+  const methods = useForm<SignInProps>();
   const { handleSubmit } = methods;
-  const handleSignIn: SubmitHandler<FieldValues> = async (
-    data: FieldValues
+  const { signIn } = useContext(AuthContext);
+  const [selectedOption, setSelectedOption] = useState("cliente");
+
+  const handleOptionChange = (event: any) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const handleSignIn: SubmitHandler<SignInProps> = async (
+    data: SignInProps
   ) => {
+    if (selectedOption == "cliente") {
+      data.cliente_radio = "cliente";
+    } else if (selectedOption == "corretor") {
+      data.corretor_radio = "corretor";
+    }
+    await signIn(data);
     console.log("Data: ", data);
   };
   return (
@@ -50,23 +66,60 @@ const SignIn = () => {
             <h1 className="text-3xl font-bold">Acessar</h1>
             <FormProvider {...methods}>
               <form onSubmit={handleSubmit(handleSignIn)}>
+                <div className="flex flex-row mt-12">
+                  <div className="mr-6">
+                    <input
+                      {...methods.register("cliente_radio")}
+                      id="cliente_radio"
+                      name="inputRadio"
+                      type="radio"
+                      className="w-4 bg-yellow"
+                      value="cliente"
+                      onChange={handleOptionChange}
+                    />
+                    <label
+                      htmlFor="cliente_radio"
+                      className="ml-2 text-lg font-medium text-blackMain"
+                    >
+                      Cliente
+                    </label>
+                  </div>
+
+                  <div className="mr-6">
+                    <input
+                      {...methods.register("corretor_radio")}
+                      id="corretor_radio"
+                      name="inputRadio"
+                      type="radio"
+                      className="w-4 bg-yellow border border-solid"
+                      value="corretor"
+                      onChange={handleOptionChange}
+                    />
+                    <label
+                      htmlFor="corretor_radio"
+                      className="ml-2 text-lg font-medium text-blackMain"
+                    >
+                      Corretor
+                    </label>
+                  </div>
+                </div>
                 <div>
                   <Input
-                    registerInput="username"
-                    title="Usuário"
-                    htmlFor="username"
-                    name="username"
-                    id="username"
+                    registerInput="email"
+                    title="E-mail"
+                    htmlFor="email"
+                    name="email"
+                    id="email"
                     type="text"
                   />
                 </div>
                 <div>
                   <Input
-                    registerInput="password"
+                    registerInput="senha"
                     title="Senha"
-                    htmlFor="password"
-                    name="password"
-                    id="password"
+                    htmlFor="senha"
+                    name="senha"
+                    id="senha"
                     type="password"
                   />
                 </div>
