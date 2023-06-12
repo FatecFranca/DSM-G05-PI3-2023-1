@@ -12,10 +12,8 @@ export default function RootLayout({
   const [menu, setMenu] = useState<any>(false);
   return (
     <main>
-      <ContextMenu.Provider value={[menu, setMenu]}>
-        <Header />
-        <div>{children}</div>
-      </ContextMenu.Provider>
+      <Header />
+      <div>{children}</div>
     </main>
   );
 }
