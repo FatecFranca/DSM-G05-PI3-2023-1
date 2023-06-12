@@ -5,7 +5,7 @@ import Image from "next/image";
 import Input from "@/components/Form/Input";
 import Button from "@/components/Form/Button";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { AuthContext } from "../contexts/ContextAuth";
+import { AuthContext } from "../../contexts/ContextAuth";
 
 type SignInProps = {
   email: string;
