@@ -1,11 +1,13 @@
-"use client";
-
 import { createContext, useEffect, useState } from "react";
-import { api } from "../services/api";
-import { signInRequestCliente, signInRequestCorretor } from "../services/auth";
-import { useRouter } from "next/navigation";
+import { api } from "../app/services/api";
+import {
+  signInRequestCliente,
+  signInRequestCorretor,
+} from "../app/services/auth";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
-import SignIn from "../SignIn/page";
+import SignIn from "../app/SignIn/page";
+import Home from "@/app/Home/page";
 
 type ClienteProps = {
   id: string;
@@ -43,6 +45,7 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthProvider({ children }: any) {
   const router = useRouter();
+  const pathname = usePathname();
   const [cliente, setCliente] = useState<ClienteProps | any>(null);
   const [corretor, setCorretor] = useState<CorretorProps | any>(null);
   const isAuthenticated = !!cliente || !!corretor;
@@ -59,9 +62,18 @@ export function AuthProvider({ children }: any) {
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
       setCliente(JSON.parse(token).cliente);
       setCorretor(JSON.parse(token).corretor);
-      return;
+      if (isAuthenticated) {
+        router.push("/Home");
+      }
+      if (!isAuthenticated) {
+        router.push("/SignIn");
+      }
+    } else {
+      if (!isAuthenticated && pathname !== "/SignIn") {
+        router.push("/SignIn");
+      }
     }
-  }, [storage]);
+  }, [storage, isAuthenticated]);
 
   async function signIn({
     email,
@@ -79,7 +91,7 @@ export function AuthProvider({ children }: any) {
 
           api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
-          setCliente(token.admin);
+          setCliente(token.cliente);
           router.push("/Home");
         })
         .catch((error) => {
@@ -107,7 +119,6 @@ export function AuthProvider({ children }: any) {
           api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
           setCorretor(token.corretor);
-          router.push("/Home");
         })
         .catch((error) => {
           toast.error(error.response, {
@@ -128,7 +139,6 @@ export function AuthProvider({ children }: any) {
     localStorage.clear();
     setCliente(null);
     setCorretor(null);
-    router.push("/");
   }
 
   return (
@@ -136,15 +146,9 @@ export function AuthProvider({ children }: any) {
       <AuthContext.Provider
         value={{ cliente, corretor, isAuthenticated, signIn, signOut }}
       >
-        {isAuthenticated ? (
-          children
-        ) : (
-          <>
-            <SignIn />
-            <ToastContainer />
-          </>
-        )}
+        {children}
       </AuthContext.Provider>
+      {isAuthenticated && <ToastContainer />}
     </>
   );
 }

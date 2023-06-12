@@ -6,20 +6,20 @@ import { BsPersonCircle } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoSignOut } from "react-icons/go";
 import Menu from "../Menu";
-import ContextMenu from "@/app/contexts/ContextMenu";
+import ContextMenu from "@/contexts/ContextMenu";
 import Link from "next/link";
-import { AuthContext } from "@/app/contexts/ContextAuth";
+import { AuthContext } from "@/contexts/ContextAuth";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [menu, setMenu] = useContext<any>(ContextMenu);
   const { signOut } = useContext(AuthContext);
-
+  const pathname = usePathname();
   const handleMenu = () => {
-    console.log("entrei ak");
     setMenu(!menu);
   };
 
-  return (
+  return pathname !== "/SignIn" ? (
     <header className="bg-blackMain p-4 flex justify-around items-center">
       <Link href="/Home">
         <div className="cursor-pointer">
@@ -56,6 +56,8 @@ const Header = () => {
       </div>
       {menu == true && <Menu />}
     </header>
+  ) : (
+    ""
   );
 };
 

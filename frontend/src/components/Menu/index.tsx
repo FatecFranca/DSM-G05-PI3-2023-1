@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { IoMdSettings, IoMdAddCircle } from "react-icons/io";
-import ContextMenu from "@/app/contexts/ContextMenu";
+import ContextMenu from "@/contexts/ContextMenu";
 import LinksMenu from "../LinksMenu";
 
 const Menu = () => {
