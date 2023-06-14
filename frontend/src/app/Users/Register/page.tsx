@@ -4,6 +4,9 @@ import Button from "@/components/Form/Button";
 import Input from "@/components/Form/Input";
 import React from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useClienteService } from "@/app/services/cliente.service";
 
 interface Address {
   cep?: string;
@@ -24,10 +27,30 @@ interface UserProps {
 }
 
 const RegisterUsers = () => {
+  const serviceCliente = useClienteService();
   const methods = useForm();
   const { handleSubmit, reset } = methods;
 
-  const handleSignIn: SubmitHandler<UserProps> = async (data: UserProps) => {
+  const handleRegister: SubmitHandler<UserProps> = async (data: UserProps) => {
+    serviceCliente
+      .POST(data)
+      .then(() => {
+        console.log("enteri ak");
+        toast.success("Cliente salvo com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        reset();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     console.log("Data: ", data);
   };
   return (
@@ -37,7 +60,7 @@ const RegisterUsers = () => {
           Cadastro de Usuário
         </h1>
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(handleSignIn)}>
+          <form onSubmit={handleSubmit(handleRegister)}>
             <div className="flex flex-col">
               <div className="flex flex-row">
                 <div className="w-full mr-6">
