@@ -35,7 +35,6 @@ const RegisterUsers = () => {
     serviceCliente
       .POST(data)
       .then(() => {
-        console.log("enteri ak");
         toast.success("Cliente salvo com sucesso!", {
           position: "top-right",
           autoClose: 5000,

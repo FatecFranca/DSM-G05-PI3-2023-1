@@ -1,9 +1,12 @@
 "use client";
 
+import { useImovelService } from "@/app/services/imovel.service";
 import Button from "@/components/Form/Button";
 import Input from "@/components/Form/Input";
 import React from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Address {
   cep?: string;
@@ -20,19 +23,36 @@ interface RealtyProps {
   qtde_quartos?: number;
   qtde_banheiros?: number;
   area?: string;
-  nome?: string;
-  email?: string;
-  telefone?: string;
+  proprietario?: string;
   endereco?: Address;
 }
 
 const RegisterRealty = () => {
+  const serviceImovel = useImovelService();
   const methods = useForm();
   const { handleSubmit, reset } = methods;
 
-  const handleSignIn: SubmitHandler<RealtyProps> = async (
+  const handleRegister: SubmitHandler<RealtyProps> = async (
     data: RealtyProps
   ) => {
+    serviceImovel
+      .POST(data)
+      .then(() => {
+        toast.success("Imóvel salvo com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        reset();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     console.log("Data: ", data);
   };
   return (
@@ -40,7 +60,7 @@ const RegisterRealty = () => {
       <div>
         <h1 className="text-whiteMain text-xl uppercase">Cadastro de Imóvel</h1>
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(handleSignIn)}>
+          <form onSubmit={handleSubmit(handleRegister)}>
             <div className="flex flex-col">
               <div className="flex flex-row">
                 <div className="w-1/3 mr-6">
@@ -124,6 +144,7 @@ const RegisterRealty = () => {
                 <div className="w-1/3 mr-6">
                   <Input
                     registerInput="valor"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Preço"
                     htmlFor="valor"
                     name="valor"
@@ -136,6 +157,7 @@ const RegisterRealty = () => {
                 <div className="w-1/3 mr-6">
                   <Input
                     registerInput="finalidade"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Tipo de Imóvel"
                     htmlFor="finalidade"
                     name="finalidade"
@@ -148,6 +170,7 @@ const RegisterRealty = () => {
                 <div className="w-1/3 mr-6">
                   <Input
                     registerInput="qtde_quartos"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Quartos"
                     htmlFor="qtde_quartos"
                     name="qtde_quartos"
@@ -160,6 +183,7 @@ const RegisterRealty = () => {
                 <div className="w-1/3">
                   <Input
                     registerInput="qtde_banheiros"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Banheiros"
                     htmlFor="qtde_banheiros"
                     name="qtde_banheiros"
@@ -174,6 +198,7 @@ const RegisterRealty = () => {
                 <div className="w-1/3">
                   <Input
                     registerInput="area"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Area Total"
                     htmlFor="area"
                     name="area"
@@ -193,37 +218,12 @@ const RegisterRealty = () => {
               <div className="flex flex-row">
                 <div className="w-full">
                   <Input
-                    registerInput="nome"
+                    registerInput="proprietario"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Nome"
-                    htmlFor="nome"
-                    name="nome"
-                    id="nome"
-                    type="text"
-                    customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-row">
-                <div className="w-full mr-6">
-                  <Input
-                    registerInput="email"
-                    title="E-mail"
-                    htmlFor="email"
-                    name="email"
-                    id="email"
-                    type="email"
-                    customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
-                  />
-                </div>
-                <div className="w-full">
-                  <Input
-                    registerInput="telefone"
-                    title="Telefone"
-                    htmlFor="telefone"
-                    name="telefone"
-                    id="telefone"
+                    htmlFor="proprietario"
+                    name="proprietario"
+                    id="proprietario"
                     type="text"
                     customClassTitle="text-whiteMain"
                     customClassInput="bg-white text-whiteMain"
