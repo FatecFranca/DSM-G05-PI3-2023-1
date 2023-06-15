@@ -2,11 +2,12 @@
 
 import Button from "@/components/Form/Button";
 import Input from "@/components/Form/Input";
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useClienteService } from "@/app/services/cliente.service";
+import { useCorretorService } from "@/app/services/corretor.service";
 
 interface Address {
   cep?: string;
@@ -28,29 +29,55 @@ interface UserProps {
 
 const RegisterUsers = () => {
   const serviceCliente = useClienteService();
+  const serviceCorretor = useCorretorService();
+  const [selectedUser, setSelectedUser] = useState("cliente");
   const methods = useForm();
   const { handleSubmit, reset } = methods;
 
+  const handleUserChange = (event: any) => {
+    setSelectedUser(event.target.value);
+  };
+
   const handleRegister: SubmitHandler<UserProps> = async (data: UserProps) => {
-    serviceCliente
-      .POST(data)
-      .then(() => {
-        toast.success("Cliente salvo com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+    if (selectedUser == "cliente") {
+      serviceCliente
+        .POST(data)
+        .then(() => {
+          toast.success("Cliente salvo com sucesso!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          reset();
+        })
+        .catch((err) => {
+          console.log(err);
         });
-        reset();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log("Data: ", data);
+    } else if (selectedUser == "corretor") {
+      serviceCorretor
+        .POST(data)
+        .then(() => {
+          toast.success("Corretor salvo com sucesso!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          reset();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   return (
     <div className="bg-blackMain h-auto m-24 rounded-lg py-6 px-12">
@@ -61,6 +88,47 @@ const RegisterUsers = () => {
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(handleRegister)}>
             <div className="flex flex-col">
+              <h1 className="text-yellow my-5 font-bold text-lg ">
+                Escolha que tipo de usuário deseja cadastrar
+              </h1>
+              <div className="flex flex-row">
+                <div className="mr-6">
+                  <input
+                    {...methods.register("cliente_radio")}
+                    id="cliente_radio"
+                    name="inputRadio"
+                    type="radio"
+                    className="w-4 bg-yellow"
+                    value="cliente"
+                    defaultChecked
+                    onChange={handleUserChange}
+                  />
+                  <label
+                    htmlFor="cliente_radio"
+                    className="ml-2 text-lg font-medium text-whiteMain"
+                  >
+                    Cliente
+                  </label>
+                </div>
+
+                <div className="mr-6">
+                  <input
+                    {...methods.register("corretor_radio")}
+                    id="corretor_radio"
+                    name="inputRadio"
+                    type="radio"
+                    className="w-4 bg-yellow border border-solid"
+                    value="corretor"
+                    onChange={handleUserChange}
+                  />
+                  <label
+                    htmlFor="corretor_radio"
+                    className="ml-2 text-lg font-medium text-whiteMain"
+                  >
+                    Corretor
+                  </label>
+                </div>
+              </div>
               <div className="flex flex-row">
                 <div className="w-full mr-6">
                   <Input
@@ -141,12 +209,12 @@ const RegisterUsers = () => {
                 </div>
                 <div className="w-full">
                   <Input
-                    registerInput="senha"
+                    registerInput="repetirSenha"
                     validation={{ required: "Campo obrigatório" }}
                     title="Confirmação de Senha"
-                    htmlFor="senha"
-                    name="senha"
-                    id="senha"
+                    htmlFor="repetirSenha"
+                    name="repetirSenha"
+                    id="repetirSenha"
                     type="password"
                     customClassTitle="text-whiteMain"
                     customClassInput="bg-white text-whiteMain"
