@@ -6,8 +6,6 @@ import {
 } from "../app/services/auth";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
-import SignIn from "../app/SignIn/page";
-import Home from "@/app/Home/page";
 
 type ClienteProps = {
   id: string;
