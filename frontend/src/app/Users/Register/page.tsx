@@ -66,6 +66,7 @@ const RegisterUsers = () => {
                 <div className="w-full mr-6">
                   <Input
                     registerInput="nome"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Nome"
                     htmlFor="nome"
                     name="nome"
@@ -78,6 +79,7 @@ const RegisterUsers = () => {
                 <div className="w-full">
                   <Input
                     registerInput="cpf"
+                    validation={{ required: "Campo obrigatório" }}
                     title="CPF"
                     htmlFor="cpf"
                     name="cpf"
@@ -93,6 +95,13 @@ const RegisterUsers = () => {
                 <div className="w-full mr-6">
                   <Input
                     registerInput="email"
+                    validation={{
+                      required: "Campo obrigatório",
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: "E-mail inválido",
+                      },
+                    }}
                     title="E-mail"
                     htmlFor="email"
                     name="email"
@@ -105,6 +114,7 @@ const RegisterUsers = () => {
                 <div className="w-full">
                   <Input
                     registerInput="telefone"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Telefone"
                     htmlFor="telefone"
                     name="telefone"
@@ -120,6 +130,7 @@ const RegisterUsers = () => {
                 <div className="w-full mr-6">
                   <Input
                     registerInput="senha"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Senha"
                     htmlFor="senha"
                     name="senha"
@@ -132,6 +143,7 @@ const RegisterUsers = () => {
                 <div className="w-full">
                   <Input
                     registerInput="senha"
+                    validation={{ required: "Campo obrigatório" }}
                     title="Confirmação de Senha"
                     htmlFor="senha"
                     name="senha"
