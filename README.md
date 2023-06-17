@@ -19,7 +19,7 @@ Repositório do GRUPO 5 - Projeto Interdisciplinar 3, 3º DSM Fatec Franca 2023/
 
 A partir do tema proposto para o projeto interdisciplinar no 3º semestre do curso de Desenvolvimento de Software Multiplataforma da Fatec Franca, nosso grupo desenvolveu um site voltado para um sistema de agendamento imobiliário. Essa aplicação web integra tanto o back-end quanto o front-end, com a inclusão de um Banco de Dados Não Relacional para suportar o armazenamento de informações.
 
-:pushpin: Status do Projeto: 🚧: **Em andamento** 🚧
+
 
 
 <span id="tecnologias">
@@ -55,7 +55,8 @@ As seguintes ferramentas, linguagens, bibliotecas e tecnologias foram usadas na 
 
 ## :clapper: Apresentação Final do Projeto :clapper:
     
-🚧: **Em andamento** 🚧
+Behance: https://www.behance.net/gallery/172827193/SeeMyPlace </br>
+YouTube: 🚧: **Em andamento** 🚧
     
 
 → [Voltar ao topo](#topo)
