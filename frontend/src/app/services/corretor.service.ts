@@ -13,9 +13,9 @@ export const useCorretorService = () => {
     return response.data;
   };
 
-  const GETALL = async (): Promise<Corretor[]> => {
+  const GETALL = async (): Promise<Corretor> => {
     const url: string = `${resourceURL}`;
-    const response: AxiosResponse<Corretor[]> = await api.get(url);
+    const response: AxiosResponse<Corretor> = await api.get(url);
     return response.data;
   };
 

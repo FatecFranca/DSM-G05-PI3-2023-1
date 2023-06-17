@@ -1,22 +1,18 @@
 import React, { InputHTMLAttributes, useRef } from "react";
 import { useFormContext } from "react-hook-form";
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   title: string;
   htmlFor: string;
   registerInput: string;
-  customClassTitle?: string;
-  customClassInput?: string;
   validation?: any;
 }
 
-const Input: React.FC<InputProps> = ({
+const Textarea: React.FC<TextAreaProps> = ({
   title,
   htmlFor,
   registerInput,
-  customClassTitle,
-  customClassInput,
   validation,
-  ...inputProps
+  ...textareaProps
 }) => {
   const {
     register,
@@ -24,23 +20,23 @@ const Input: React.FC<InputProps> = ({
     watch,
   } = useFormContext();
   const errorMessage: any = errors[registerInput]?.message;
-
-  const senhaValue = watch("senha", "");
   return (
     <div className="mt-12 w-full">
       <div className="w-full">
-        <label className={`text-xl ${customClassTitle}`} htmlFor={htmlFor}>
+        <label className="text-xl text-whiteMain" htmlFor={htmlFor}>
           {title}
         </label>
-        <input
+        <textarea
           {...register(registerInput, validation)}
-          className={`focus:outline-none w-full border border-solid border-blackMain rounded-2xl p-5 mt-2  bg-blackLight  placeholder:text-black placeholder:text-lg text-black text-lg ${customClassInput}`}
-          {...inputProps}
-        />
+          className="w-full focus:outline-none mt-2 p-5 bg-blackLight text-whiteMain rounded-2xl"
+          rows={5}
+          cols={35}
+          {...textareaProps}
+        ></textarea>
         {errorMessage && <span className="text-red-500">{errorMessage}</span>}
       </div>
     </div>
   );
 };
 
-export default Input;
+export default Textarea;

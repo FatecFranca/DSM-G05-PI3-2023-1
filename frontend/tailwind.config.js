@@ -21,6 +21,7 @@ module.exports = {
         yellow: "#EFB441",
         blackMain: "#2A2A2D",
         whiteMain: "#DADADA",
+        blackLight: "#404042",
       },
       borderRadius: {
         signIn: "3rem",
