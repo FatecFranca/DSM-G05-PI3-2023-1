@@ -19,6 +19,12 @@ export const useImovelService = () => {
     return response.data;
   };
 
+  const SEARCH = async (titulo: string): Promise<Imovel[]> => {
+    const url: string = `${resourceURL}/search/?titulo=${titulo}`;
+    const response: AxiosResponse<Imovel[]> = await api.get(url);
+    return response.data;
+  };
+
   const GET = async (id: string | any): Promise<Imovel> => {
     const url: string = `${resourceURL}/${id}`;
     const response: AxiosResponse<Imovel> = await api.get(url);
@@ -29,5 +35,6 @@ export const useImovelService = () => {
     POST,
     GETALL,
     GET,
+    SEARCH,
   };
 };

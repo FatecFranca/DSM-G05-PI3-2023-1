@@ -1,19 +1,27 @@
 "use client";
 
 import Card from "@/components/Card";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useImovelService } from "@/app/services/imovel.service";
 import { Imovel } from "@/app/models/Imovel";
+import ContextSearch from "@/contexts/ContextSearch";
 
 const Home = () => {
   const imovelService = useImovelService();
   const [imoveis, setImoveis] = useState([]);
+  const [search, setSearch] = useContext<any>(ContextSearch);
 
   useEffect(() => {
-    imovelService.GETALL().then((res: any) => {
-      setImoveis(res);
-    });
-  }, []);
+    if (search !== "") {
+      imovelService.SEARCH(search).then((res: any) => {
+        setImoveis(res);
+      });
+    } else {
+      imovelService.GETALL().then((res: any) => {
+        setImoveis(res);
+      });
+    }
+  }, [search]);
 
   console.log("Imoveis: ", imoveis);
 
