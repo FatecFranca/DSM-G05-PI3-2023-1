@@ -9,11 +9,6 @@ import ContextMenu from "../contexts/ContextMenu";
 import Header from "@/components/Header";
 import ContextSearch from "@/contexts/ContextSearch";
 
-export const metadata = {
-  title: "See My Place",
-  description: "Gestão Imobiliária",
-};
-
 export default function RootLayout({
   children,
 }: {

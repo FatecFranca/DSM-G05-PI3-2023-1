@@ -140,7 +140,7 @@ const RegisterUsers = () => {
                     id="nome"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-full">
@@ -153,7 +153,7 @@ const RegisterUsers = () => {
                     id="cpf"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
@@ -175,7 +175,7 @@ const RegisterUsers = () => {
                     id="email"
                     type="email"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-full">
@@ -188,7 +188,7 @@ const RegisterUsers = () => {
                     id="telefone"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
@@ -204,7 +204,7 @@ const RegisterUsers = () => {
                     id="senha"
                     type="password"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-full">
@@ -217,7 +217,7 @@ const RegisterUsers = () => {
                     id="repetirSenha"
                     type="password"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
@@ -233,7 +233,7 @@ const RegisterUsers = () => {
                     id="cep"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-1/3 mr-6">
@@ -245,7 +245,7 @@ const RegisterUsers = () => {
                     id="numero"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-full">
@@ -257,7 +257,7 @@ const RegisterUsers = () => {
                     id="rua"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
@@ -272,7 +272,7 @@ const RegisterUsers = () => {
                     id="bairro"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-1/3 mr-6">
@@ -284,7 +284,7 @@ const RegisterUsers = () => {
                     id="cidade"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-1/3">
@@ -296,7 +296,7 @@ const RegisterUsers = () => {
                     id="estado"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
