@@ -126,7 +126,7 @@ const View = ({ searchParams }: any) => {
                       id="nome"
                       type="text"
                       customClassTitle="text-whiteMain"
-                      customClassInput="bg-white text-whiteMain"
+                      customClassInput="text-whiteMain"
                     />
                   </div>
                   <div className="flex flex-row">
@@ -140,7 +140,7 @@ const View = ({ searchParams }: any) => {
                         id="data"
                         type="date"
                         customClassTitle="text-whiteMain"
-                        customClassInput="bg-white text-whiteMain"
+                        customClassInput="text-whiteMain"
                       />
                     </div>
                     <div className="w-full">
@@ -153,7 +153,7 @@ const View = ({ searchParams }: any) => {
                         id="horario"
                         type="time"
                         customClassTitle="text-whiteMain"
-                        customClassInput="bg-white text-whiteMain"
+                        customClassInput="text-whiteMain"
                       />
                     </div>
                   </div>
@@ -169,7 +169,7 @@ const View = ({ searchParams }: any) => {
                       id="telefone"
                       type="text"
                       customClassTitle="text-whiteMain"
-                      customClassInput="bg-white text-whiteMain"
+                      customClassInput="text-whiteMain"
                     />
                   </div>
                   <div>

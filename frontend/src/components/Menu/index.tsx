@@ -39,6 +39,11 @@ const Menu = () => {
             icon={<IoMdAddCircle className="text-3xl text-yellow" />}
             title="Cadastrar Imóvel"
           />
+          <LinksMenu
+            href="/Agenda"
+            icon={<IoMdAddCircle className="text-3xl text-yellow" />}
+            title="Agenda"
+          />
         </ul>
       </div>
     </div>
