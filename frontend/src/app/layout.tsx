@@ -7,6 +7,7 @@ import { AuthProvider } from "../contexts/ContextAuth";
 import { useState } from "react";
 import ContextMenu from "../contexts/ContextMenu";
 import Header from "@/components/Header";
+import ContextSearch from "@/contexts/ContextSearch";
 
 export const metadata = {
   title: "See My Place",
@@ -19,14 +20,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [menu, setMenu] = useState<any>(false);
+  const [search, setSearch] = useState<any>("");
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={josefin.className}>
         <AuthProvider>
-          <ContextMenu.Provider value={[menu, setMenu]}>
-            <Header />
-            {children}
-          </ContextMenu.Provider>
+          <ContextSearch.Provider value={[search, setSearch]}>
+            <ContextMenu.Provider value={[menu, setMenu]}>
+              <Header />
+              {children}
+            </ContextMenu.Provider>
+          </ContextSearch.Provider>
         </AuthProvider>
       </body>
     </html>
