@@ -1,12 +1,12 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsNumber, IsString } from 'class-validator';
 
 export class QueryParamsDTO {
-    @IsString()
-    proprietario: RegExp;
+  @IsString()
+  titulo: RegExp;
 
-    @IsNumber()
-    valor: number;
+  @IsNumber()
+  valor: number;
 
-    @IsString()
-    endereco: string
+  @IsString()
+  endereco: string;
 }
