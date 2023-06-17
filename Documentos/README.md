@@ -35,8 +35,18 @@ Um wireframe é uma representação visual básica e simplificada de uma interfa
 
 ## Protótipo
 
+<p align="center"> <img src="./img/prototipo/Prototipo%20Login%20Cliente.png" /></p> 
+<p align="center"> <img src="./img/prototipo/PrototipoInicio.png" /></p> 
+<p align="center"> <img src="./img/prototipo/PrototipoImovel.png" /></p> 
+<p align="center"> <img src="./img/prototipo/PrototipoCadastroDeImovel.png" /></p> 
+<p align="center"> <img src="./img/prototipo/PrototipoCadastroDeUsuario.png" /></p> 
+<p align="center"> <img src="./img/prototipo/PrototipoPaginaDoCliente.png" /></p> 
+<p align="center"> <img src="./img/prototipo/PrototipoPaginaDoCorretor.png" /></p> 
+
 <span id="StyleGuide">
 
 ## Style Guide
+
+<p align="center"> <img src="./img/StyleGuide.png" /></p>    
 
 → [Voltar ao topo](#topo)
