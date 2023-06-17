@@ -1,29 +1,34 @@
-import { IsString, IsNumber } from "class-validator";
-import { Document } from "mongoose";
+import { IsString, IsNumber } from 'class-validator';
+import { Document } from 'mongoose';
 
 export class CreateImovelDTO extends Document {
-    @IsString()
-    proprietario: string
+  @IsString()
+  proprietario: string;
 
-    @IsString()
-    area: string
+  @IsString()
+  area: string;
 
-    @IsNumber()
-    qtde_quartos: number
+  @IsNumber()
+  qtde_quartos: number;
 
-    @IsNumber()
-    qtde_banheiros: number
+  @IsNumber()
+  qtde_banheiros: number;
 
-    @IsNumber()
-    valor: number
-    
-    @IsString()
-    tipo: string
+  @IsNumber()
+  valor: number;
 
-    @IsString()
-    finalidade: string
+  @IsString()
+  tipo: string;
 
-    @IsString()
-    endereco: string[]
+  @IsString()
+  finalidade: string;
 
+  @IsString()
+  endereco: string[];
+
+  @IsString()
+  titulo: string;
+
+  @IsString()
+  descricao: string;
 }
