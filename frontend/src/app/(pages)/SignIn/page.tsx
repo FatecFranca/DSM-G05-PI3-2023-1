@@ -106,6 +106,7 @@ const SignIn = () => {
                 <div>
                   <Input
                     registerInput="email"
+                    customClassInput="bg-opacity-40"
                     title="E-mail"
                     htmlFor="email"
                     name="email"
@@ -116,6 +117,7 @@ const SignIn = () => {
                 <div>
                   <Input
                     registerInput="senha"
+                    customClassInput="bg-opacity-40"
                     title="Senha"
                     htmlFor="senha"
                     name="senha"

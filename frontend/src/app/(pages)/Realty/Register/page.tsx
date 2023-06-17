@@ -75,7 +75,7 @@ const RegisterRealty = () => {
                     id="titulo"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-full">
@@ -88,7 +88,7 @@ const RegisterRealty = () => {
                     id="descricao"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
@@ -102,7 +102,7 @@ const RegisterRealty = () => {
                     id="cep"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-1/3 mr-6">
@@ -114,7 +114,7 @@ const RegisterRealty = () => {
                     id="numero"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-full">
@@ -126,7 +126,7 @@ const RegisterRealty = () => {
                     id="rua"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
@@ -141,7 +141,7 @@ const RegisterRealty = () => {
                     id="bairro"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-1/3 mr-6">
@@ -153,7 +153,7 @@ const RegisterRealty = () => {
                     id="cidade"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-1/3">
@@ -165,7 +165,7 @@ const RegisterRealty = () => {
                     id="estado"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
@@ -181,7 +181,7 @@ const RegisterRealty = () => {
                     id="valor"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-1/3 mr-6">
@@ -194,7 +194,7 @@ const RegisterRealty = () => {
                     id="finalidade"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-1/3 mr-6">
@@ -207,7 +207,7 @@ const RegisterRealty = () => {
                     id="qtde_quartos"
                     type="number"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
                 <div className="w-1/3">
@@ -220,7 +220,7 @@ const RegisterRealty = () => {
                     id="qtde_banheiros"
                     type="number"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
@@ -235,7 +235,7 @@ const RegisterRealty = () => {
                     id="area"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
@@ -256,7 +256,7 @@ const RegisterRealty = () => {
                     id="proprietario"
                     type="text"
                     customClassTitle="text-whiteMain"
-                    customClassInput="bg-white text-whiteMain"
+                    customClassInput="text-whiteMain"
                   />
                 </div>
               </div>
