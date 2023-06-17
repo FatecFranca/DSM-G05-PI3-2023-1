@@ -8,7 +8,7 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 
 type ClienteProps = {
-  id: string;
+  _id: string;
   nome: string;
   email: string;
   telefone: string;
@@ -16,7 +16,7 @@ type ClienteProps = {
 };
 
 type CorretorProps = {
-  id: string;
+  _id: string;
   nome: string;
   cpf: string;
   telefone: string;

@@ -1,17 +1,30 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Imovel } from "@/app/models/Imovel";
 import { useImovelService } from "@/app/services/imovel.service";
 import Image from "next/image";
 import Input from "@/components/Form/Input";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Button from "@/components/Form/Button";
+import { Agenda } from "@/app/models/Agenda";
+import { useAgendaService } from "@/app/services/agenda.service";
+import Textarea from "@/components/Form/Textarea";
+import { AuthContext } from "@/contexts/ContextAuth";
+import { useCorretorService } from "@/app/services/corretor.service";
+import { Corretor } from "@/app/models/Corretor";
 
 const View = ({ searchParams }: any) => {
   const { id } = searchParams;
   const [imovel, setImovel] = useState<Imovel>();
+  const [corretor, setCorretor] = useState<Corretor[]>();
+  const [selectedCorretor, setSelectedCorretor] = useState("");
+  const { cliente } = useContext(AuthContext);
   const imovelService = useImovelService();
+  const agendaService = useAgendaService();
+  const corretorService = useCorretorService();
   const methods = useForm();
   const { handleSubmit, reset } = methods;
   useEffect(() => {
@@ -21,6 +34,43 @@ const View = ({ searchParams }: any) => {
       });
     }
   }, [id]);
+
+  useEffect(() => {
+    corretorService.GETALL().then((res: any) => {
+      setCorretor(res);
+    });
+  }, []);
+
+  const handleCorretorChange = (event: any) => {
+    setSelectedCorretor(event.target.value);
+  };
+
+  const handleRegister: SubmitHandler<Agenda> = async (data: Agenda) => {
+    data.cliente = cliente._id;
+    data.corretor = selectedCorretor;
+    data.imovel = id;
+    agendaService
+      .POST(data)
+      .then(() => {
+        toast.success("Agenda criada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setSelectedCorretor("");
+        reset();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log("Data: ", data);
+  };
+
   return (
     <div className="flex flex-col justify-center items-center mt-24 pb-24">
       <div className="bg-blackMain p-8 rounded-xl flex  items-center w-10/12 h-auto">
@@ -63,7 +113,7 @@ const View = ({ searchParams }: any) => {
         </div>
         <div className="w-full">
           <FormProvider {...methods}>
-            <form>
+            <form onSubmit={handleSubmit(handleRegister)}>
               <div className="flex flex-col mx-24">
                 <div className="flex flex-row ">
                   <div className="w-1/2 mr-12">
@@ -82,12 +132,12 @@ const View = ({ searchParams }: any) => {
                   <div className="flex flex-row">
                     <div className="w-full mr-6">
                       <Input
-                        registerInput="cpf"
+                        registerInput="data"
                         validation={{ required: "Campo obrigatório" }}
                         title="Data"
-                        htmlFor="cpf"
-                        name="cpf"
-                        id="cpf"
+                        htmlFor="data"
+                        name="data"
+                        id="data"
                         type="date"
                         customClassTitle="text-whiteMain"
                         customClassInput="bg-white text-whiteMain"
@@ -95,12 +145,12 @@ const View = ({ searchParams }: any) => {
                     </div>
                     <div className="w-full">
                       <Input
-                        registerInput="cpf"
+                        registerInput="horario"
                         validation={{ required: "Campo obrigatório" }}
                         title="Horário"
-                        htmlFor="cpf"
-                        name="cpf"
-                        id="cpf"
+                        htmlFor="horario"
+                        name="horario"
+                        id="horario"
                         type="time"
                         customClassTitle="text-whiteMain"
                         customClassInput="bg-white text-whiteMain"
@@ -111,46 +161,48 @@ const View = ({ searchParams }: any) => {
                 <div className="flex flex-row ">
                   <div className="w-1/2 mr-12">
                     <Input
-                      registerInput="nome"
+                      registerInput="telefone"
                       validation={{ required: "Campo obrigatório" }}
                       title="Telefone"
-                      htmlFor="nome"
-                      name="nome"
-                      id="nome"
+                      htmlFor="telefone"
+                      name="telefone"
+                      id="telefone"
                       type="text"
                       customClassTitle="text-whiteMain"
                       customClassInput="bg-white text-whiteMain"
                     />
                   </div>
                   <div>
-                    <div className="w-full">
-                      <Input
-                        registerInput="cpf"
-                        validation={{ required: "Campo obrigatório" }}
-                        title="Telefone"
-                        htmlFor="cpf"
-                        name="cpf"
-                        id="cpf"
-                        type="text"
-                        customClassTitle="text-whiteMain"
-                        customClassInput="bg-white text-whiteMain"
+                    <div className="">
+                      <Textarea
+                        title="Observação"
+                        htmlFor="observacao"
+                        registerInput="observacao"
+                        name="observacao"
+                        id="observacao"
                       />
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-row ">
-                  <div className="w-full mr-12">
-                    <Input
-                      registerInput="nome"
-                      validation={{ required: "Campo obrigatório" }}
-                      title="E-mail"
-                      htmlFor="nome"
-                      name="nome"
-                      id="nome"
-                      type="email"
-                      customClassTitle="text-whiteMain"
-                      customClassInput="bg-white text-whiteMain"
-                    />
+                <div className="flex flex-row mt-12">
+                  <div className="w-full flex flex-col mr-12">
+                    <label className="text-xl text-whiteMain" htmlFor="">
+                      Selecione um corretor
+                    </label>
+                    <select
+                      className="mt-2 p-5 rounded-2xl bg-blackLight text-whiteMain"
+                      name=""
+                      id=""
+                      value={selectedCorretor}
+                      onChange={handleCorretorChange}
+                    >
+                      <option value="">Selecione um corretor</option>
+                      {corretor?.map((corretor: Corretor) => (
+                        <option key={corretor.id} value={corretor.id}>
+                          {corretor.nome}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <div className="mt-auto w-full">
                     <Button
