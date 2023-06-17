@@ -25,6 +25,8 @@ interface RealtyProps {
   area?: string;
   proprietario?: string;
   endereco?: Address;
+  titulo?: string;
+  descricao?: string;
 }
 
 const RegisterRealty = () => {
@@ -62,6 +64,34 @@ const RegisterRealty = () => {
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(handleRegister)}>
             <div className="flex flex-col">
+              <div className="flex flex-row">
+                <div className="w-full mr-6">
+                  <Input
+                    registerInput="titulo"
+                    validation={{ required: "Campo obrigatório" }}
+                    title="Título"
+                    htmlFor="titulo"
+                    name="titulo"
+                    id="titulo"
+                    type="text"
+                    customClassTitle="text-whiteMain"
+                    customClassInput="bg-white text-whiteMain"
+                  />
+                </div>
+                <div className="w-full">
+                  <Input
+                    registerInput="descricao"
+                    validation={{ required: "Campo obrigatório" }}
+                    title="Descrição"
+                    htmlFor="descricao"
+                    name="descricao"
+                    id="descricao"
+                    type="text"
+                    customClassTitle="text-whiteMain"
+                    customClassInput="bg-white text-whiteMain"
+                  />
+                </div>
+              </div>
               <div className="flex flex-row">
                 <div className="w-1/3 mr-6">
                   <Input

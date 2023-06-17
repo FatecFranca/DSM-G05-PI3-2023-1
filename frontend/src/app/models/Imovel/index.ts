@@ -7,6 +7,8 @@ export interface Imovel {
   endereco?: Address;
   area?: string;
   proprietario?: string;
+  titulo?: string;
+  descricao?: string;
 }
 
 interface Address {
